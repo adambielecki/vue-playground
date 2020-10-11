@@ -1,39 +1,44 @@
 <template>
   <div id="app">
-    <Todos v-bind:todos="todos"/>
+    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
   </div>
 </template>
 
 <script>
-import Todos from './components/Todos'
+import Todos from "./components/Todos";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Todos
+    Todos,
   },
-  data (){
+  data() {
     return {
       todos: [
         {
-          id:1,
+          id: 1,
           title: "Todo one",
-          complete: false
+          complete: false,
         },
         {
-          id:1,
+          id: 2,
           title: "Todo two",
-          complete: true
+          complete: true,
         },
         {
-          id:1,
+          id: 3,
           title: "Todo three",
-          complete: false
-        }
-      ]
-    }
-  }
-}
+          complete: false,
+        },
+      ],
+    };
+  },
+  methods: {
+    deleteTodo(id) {
+      this.todos = this.todos.filter(todo => todo.id !== id);
+    },
+  },
+};
 </script>
 
 <style>
@@ -41,8 +46,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>
